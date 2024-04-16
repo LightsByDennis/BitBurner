@@ -17,6 +17,8 @@ export async function main(ns)
   	for (let server of servers)
   	{
     	let currentTarget = server
+    	let target = server
+    	var ports = ns.getServerNumPortsRequired(target);
     	if (currentTarget != "home") {
     		if (debug = 1) {
     			ns.tprint("==========================================");
@@ -75,7 +77,9 @@ export async function main(ns)
     		var serverMemory = ns.getServerMaxRam(target);
     		var scriptMemory = ns.getScriptRam("payload.js");
     		var threads = Math.floor(serverMemory / scriptMemory);
-    		ns.exec("payload.js", target, threads, target);
+    		if (threads > 0) {
+    			ns.exec("payload.js", target, threads, target);
+    		}
       		await ns.sleep(500);
     	}
   	}
