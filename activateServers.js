@@ -30,6 +30,9 @@ export async function main(ns) {
       case 8:
         var target = "crush-fitness";
         break;
+      default:
+        var target = "crush-fitness";
+        break;
     }
     ns.killall(serverName)
     ns.scp("payload.js", serverName, "home");
