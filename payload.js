@@ -1,6 +1,6 @@
 
 export async function main(ns) {
-  var debug = 0;
+  var debug = 1;
   var scriptName = ns.getScriptName();
   var target = ns.args[0];
   var host = ns.getHostname();
@@ -39,7 +39,7 @@ export async function main(ns) {
     }
     else if (ns.getServerMoneyAvailable(target) < (serverMaxMoney * 0.5)) {
       ns.print("=================================================");
-      ns.print( target + " money availabe is " + serverMoneyAvailable);
+      ns.print( target + " money availabe is " + ns.getServerMoneyAvailable(target));
       ns.print("Growing " + target + " to atleast " + (serverMaxMoney * 0.5));
       ns.print("=================================================");
       await ns.grow(target);

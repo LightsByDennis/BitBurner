@@ -3,6 +3,7 @@ export async function main(ns) {
   var debug = 1;
   var scriptName = ns.getScriptName();
   var target = ns.args[0];
+  var targetServer = ns.args[1];
   var host = ns.getHostname();
   var ports = ns.getServerNumPortsRequired(target);
   var serverMemory = ns.getServerMaxRam(target);
@@ -11,6 +12,8 @@ export async function main(ns) {
   var hackSkill = ns.getServerRequiredHackingLevel(target);
   if (debug == 1){
     ns.tail(scriptName, host, ns.args[0]);
+    ns.print("TargetServer var =")
+    ns.print(targetServer)
   }
   const serverObject = ns.getServer(target);
   const portsRemaining = serverObject.numOpenPortsRequired - serverObject.openPortCount;
@@ -72,7 +75,7 @@ export async function main(ns) {
   var threads = Math.floor(serverMemory / scriptMemory);
   if (hackingLevel > hackSkill && threads > 0) {
     try {
-      ns.exec("payload.js", target, threads, target);
+      ns.exec("payload.js", target, threads, targetServer);
     }
     catch (error) {
       ns.print(error);

@@ -10,17 +10,20 @@ function dpList(ns, current = "home", set = new Set())
     return Array.from(set.keys());
 }
 
+var targetServer = ""
+
 export async function main(ns) 
 {
     ns.tail("launchICBM.js", "home");
     let servers = dpList(ns);
+    targetServer = ns.args[0]
     for (let server of servers)
     {
       let currentTarget = server
       if (currentTarget != "home") {
         ns.print("==========================================");
         ns.print("server = " + server);
-        ns.exec("main.js", "home", 1, server);
+        ns.exec("main.js", "home", 1, server, targetServer);
         await ns.sleep(500)
       }
     }
