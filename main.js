@@ -73,7 +73,7 @@ export async function main(ns) {
   ns.scp("payload.js", target, host);
 
   var threads = Math.floor(serverMemory / scriptMemory);
-  if (hackingLevel > hackSkill && threads > 0) {
+  if (hackingLevel >= hackSkill && threads > 0) {
     try {
       ns.exec("payload.js", target, threads, targetServer);
     }
