@@ -40,7 +40,7 @@ export async function main(ns) {
     else if (ns.getServerMoneyAvailable(target) < (serverMaxMoney * 0.5)) {
       ns.print("=================================================");
       ns.print( target + " money availabe is " + ns.getServerMoneyAvailable(target));
-      ns.print("Growing " + target + " to atleast " + (serverMaxMoney * 0.5));
+      ns.print("Growing " + target + " to atleast " + (serverMaxMoney * 0.7));
       ns.print("=================================================");
       await ns.grow(target);
     }
